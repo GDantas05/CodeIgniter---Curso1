@@ -7,10 +7,12 @@ class Produtos extends CI_Controller
 
 	public function index() {
 
-		$produtos = array();
-		$bola = array('nome' => 'Bola de Futebol', 'descricao' => 'Bola de Futebol', 'preco' => 300);
-		$hd   = array('nome' => 'HD Externo', 'descricao' => 'HD Externo', 'preco' => 400);
-		array_push($produtos, $bola, $hd);
+		$this->load->database();
+		$this->load->model("produtos_model");
+		$this->load->helper("url");
+		$this->load->helper("currency");
+
+		$produtos = $this->produtos_model->mostraTodos();
 
 		$dados = array('produtos' => $produtos);
 

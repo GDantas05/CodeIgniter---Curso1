@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Listagem de Produtos</title>
-	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.css">
 </head>
 <body>
 	<div class="container">
@@ -18,7 +18,7 @@
 			<tr>
 				<td><?= $produto['nome'] ?></td>
 				<td><?= $produto['descricao'] ?></td>
-				<td><?= $produto['preco'] ?></td>
+				<td><?= numeroEmReais($produto['preco']) ?></td>
 			</tr>
 			<?php endforeach ?>
 		</table>
