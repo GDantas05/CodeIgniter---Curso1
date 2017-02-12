@@ -8,11 +8,10 @@ class Produtos extends CI_Controller
 
 	public function index() {
 
-		$this->load->database();
+		//$this->output->enable_profiler(TRUE);
+
 		$this->load->model("produtos_model");
-		$this->load->helper("url");
-		$this->load->helper("currency");
-		$this->load->helper("form");
+		$this->load->helper(array("url", "currency", "form"));
 
 		$produtos = $this->produtos_model->mostraTodos();
 
