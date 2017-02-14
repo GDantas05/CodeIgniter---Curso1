@@ -11,7 +11,7 @@ class Produtos extends CI_Controller
 		//$this->output->enable_profiler(TRUE);
 
 		$this->load->model("produtos_model");
-		$this->load->helper(array("url", "currency", "form"));
+		$this->load->helper(array("currency", "form"));
 
 		$produtos = $this->produtos_model->mostraTodos();
 
