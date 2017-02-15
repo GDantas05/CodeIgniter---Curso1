@@ -7,6 +7,16 @@
 </head>
 <body>
 	<div class="container">
+		<?php if ($this->session->flashdata('success')) : ?>
+			<div class="alert alert-success">
+				<h6><?= $this->session->flashdata('success') ?></h6>
+			</div>
+		<?php endif ?>
+		<?php if ($this->session->flashdata('danger')) : ?>
+			<div class="alert alert-danger">
+				<h6><?= $this->session->flashdata('danger') ?></h6>
+			</div>
+		<?php endif ?>
 		<h1>Produtos</h1>
 		<table class="table">
 			<tr>
@@ -22,7 +32,9 @@
 			</tr>
 			<?php endforeach ?>
 		</table>
-		<?php if (!$this->session->userdata("usuario_logado")) : ?>
+		<?php if ($this->session->userdata("usuario_logado")) : ?>
+			<?= anchor('login/logout', 'Logout', array('class' => 'btn btn-primary')) ?>
+		<?php else : ?>
 		<h1>Login</h1>
 		<?php
 			echo form_open('login/autenticar');
