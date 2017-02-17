@@ -11,12 +11,32 @@ class Produtos extends CI_Controller
 		//$this->output->enable_profiler(TRUE);
 
 		$this->load->model("produtos_model");
-		$this->load->helper(array("currency", "form"));
+		$this->load->helper("currency");
 
 		$produtos = $this->produtos_model->mostraTodos();
 
 		$dados = array('produtos' => $produtos);
 
 		$this->load->view('produtos/index.php', $dados);
+	}
+
+	public function formulario() {
+		$this->load->view('produtos/formulario');
+	}
+	
+	public function novo() {
+		
+		$usuarioLogado = $this->session->userdata("usuario_logado");
+		$produto = array('nome'       => $this->input->post('nome'),
+						 'descricao'  => $this->input->post('descricao'),
+						 'preco'      => $this->input->post('preco'),
+						 'usuario_id' => $usuarioLogado['id']
+		);
+		
+		$this->load->model('produtos_model');
+		$this->produtos_model->salva($produto);
+		$this->session->set_flashdata("success", "Produto salvo com sucesso");
+		
+		redirect("/");
 	}
 }

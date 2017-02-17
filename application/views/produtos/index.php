@@ -8,14 +8,10 @@
 <body>
 	<div class="container">
 		<?php if ($this->session->flashdata('success')) : ?>
-			<div class="alert alert-success">
-				<h6><?= $this->session->flashdata('success') ?></h6>
-			</div>
+			<p class="alert alert-success"><?= $this->session->flashdata('success') ?></p>
 		<?php endif ?>
 		<?php if ($this->session->flashdata('danger')) : ?>
-			<div class="alert alert-danger">
-				<h6><?= $this->session->flashdata('danger') ?></h6>
-			</div>
+			<p class="alert alert-danger"><?= $this->session->flashdata('danger') ?></p>
 		<?php endif ?>
 		<h1>Produtos</h1>
 		<table class="table">
@@ -34,6 +30,7 @@
 		</table>
 		<?php if ($this->session->userdata("usuario_logado")) : ?>
 			<?= anchor('login/logout', 'Logout', array('class' => 'btn btn-primary')) ?>
+			<?= anchor('produtos/formulario', 'Cadastrar', array('class' => 'btn btn-success')) ?>
 		<?php else : ?>
 		<h1>Login</h1>
 		<?php
