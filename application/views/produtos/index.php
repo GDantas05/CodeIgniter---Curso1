@@ -17,14 +17,14 @@
 		<table class="table">
 			<tr>
 				<td>Nome</td>
-				<td>Descrição</td>
 				<td>Preço</td>
+				<td>Descrição</td>
 			</tr>
 			<?php foreach ($produtos as $produto) : ?>
 			<tr>
-				<td><?= $produto['nome'] ?></td>
-				<td><?= $produto['descricao'] ?></td>
-				<td><?= numeroEmReais($produto['preco']) ?></td>
+				<td><?= anchor("produtos/{$produto['id']}", html_escape($produto["nome"])); ?></td>
+				<td><?= numeroEmReais(html_escape($produto['preco'])) ?></td>
+				<td><?= character_limiter(html_escape($produto['descricao']), 20) ?></td>
 			</tr>
 			<?php endforeach ?>
 		</table>
