@@ -13,7 +13,7 @@ class Produtos extends CI_Controller
 		$this->load->model("produtos_model");
 		$this->load->helper("currency");
 
-		$produtos = $this->produtos_model->mostraTodos();
+		$produtos = $this->produtos_model->mostraNaoVendidos();
 
 		$dados = array('produtos' => $produtos);
 
@@ -21,11 +21,13 @@ class Produtos extends CI_Controller
 	}
 
 	public function formulario() {
+		autorizacao();
 		$this->load->view('produtos/formulario');
 	}
 	
 	public function novo() {
 
+		$usuarioLogado = autorizacao();
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules("nome", "Nome", "required|min_length[5]|max_length[100]|callback_nao_tenha_a_palavra_melhor");
@@ -35,7 +37,6 @@ class Produtos extends CI_Controller
 		$sucesso = $this->form_validation->run();
 
 		if ($sucesso) {
-			$usuarioLogado = $this->session->userdata("usuario_logado");
 			$produto = array('nome'       => $this->input->post('nome'),
 						 	 'descricao'  => $this->input->post('descricao'),
 						 	 'preco'      => $this->input->post('preco'),
